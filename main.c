@@ -5,8 +5,8 @@ void print_matrix(int *a, int *b, int n)
     for (int i=0; i<n; i++)
     {
         for (int j=0; j<n; j++)
-            printf("%4d", *(a + i*n + j ));
-        printf("%4d", *(b + i));
+            printf("%8d", *(a + i*n + j ));
+        printf("\t | %8d", *(b + i));
         printf("\n");
     }
     printf("\n");
@@ -14,18 +14,21 @@ void print_matrix(int *a, int *b, int n)
 
 int main()
 {
-    int a[3][3] =
+    int a[4][4] =
     {
-        {1,2,1},
-        {2,1,-1},
-        {2,-1,1}
+        {1,2,5,1},
+        {3,-4,3,-2},
+        {4,3,2,-1},
+        {1,-2,-4,-1}
     };
-    int b[3] = {8,1,3};
-    int x[3] = {0};
+    int b[4] = {4,7,1,2};
+    int x[4] = {0};
 
-    print_matrix(*a, b, 3);
+    int n = sizeof(b)/sizeof(b[0]);
 
-    int n=3;
+    print_matrix(*a, b, n);
+
+
     for (int k=0; k<n-1; k++)
     {
         for (int i=k+1; i<n; i++)
@@ -44,7 +47,7 @@ int main()
         }
     }
 
-    print_matrix(*a, b, 3);
+    print_matrix(*a, b, n);
 
     for (int i=n-1; i>=0; i--)
     {
@@ -55,8 +58,10 @@ int main()
             sum -= a[i][j] * x[j];
         }
         x[i] = sum / a[i][i];
-        printf("x[%d] = %d\n", i, x[i]);
     }
+
+    for (int i=0; i<n; i++)
+        printf("x%d = %3d\n", i+1, x[i]);
 
     return 0;
 }

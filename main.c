@@ -27,25 +27,24 @@ int *swap(int *a, int *b, int n)
     return NULL;
 }
 
-int getmax(int *a, int b[], int row, int n)
+int gcd(int a, int b)
 {
-    int max = b[row];
-    for (int i=1; i<n; i++)
-        if ( *(a + i + row*n) > max )
-            max = *(a + i + row*n);
-    return max;
+    if (a == 0)
+        return b;
+    return gcd(b % a, a);
 }
 
-int gcd (int *a, int *b, int n)
+int findGCD(int *a, int *b, int row, int n)
 {
-    int gcd = 1;
+    int result = *(a+n*row);
+    for (int i = 1; i < n; i++)
+        result = gcd(*(a+i+n*row), result);
+    result = gcd(*(a+n-1+n*row), *(b+row));
 
-    for (int i=0; i<n; i++)
-        getmax(a,b,i,n);
-
-
-    return gcd;
+    return result;
 }
+
+
 
 int main()
 {
@@ -63,7 +62,7 @@ int main()
 
     if (a[0][0] == 0) swap(*a,b,n);
 
-    getmax(*a,b,1,n);
+
 
     print_matrix(*a, b, n);
 
@@ -84,6 +83,14 @@ int main()
             }
         }
         print_matrix(*a, b, n);
+    }
+
+    for (int i=0; i<n; i++)
+    {
+        int gcd = findGCD(*a,b,i,n);
+        for (int j=0; j<n; j++)
+            a[i][j] /= gcd;
+        b[i] /= gcd;
     }
 
     print_matrix(*a, b, n);

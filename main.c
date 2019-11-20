@@ -38,10 +38,8 @@ int findGCD(int *a, int *b, int row, int n)
 {
     int result = *(a+n*row);
     for (int i = 1; i < n; i++)
-        result = gcd(*(a+i+n*row), result);
-    result = gcd(result, *(b+row));
-
-    return result;
+            result = gcd(*(a+i+n*row), result);
+    return gcd(result, *(b+row));
 }
 
 

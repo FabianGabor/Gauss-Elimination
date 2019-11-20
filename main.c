@@ -1,11 +1,11 @@
 #include <stdio.h>
 
-void print_matrix(int *a, int n)
+void print_matrix(double *a, int n)
 {
     for (int i=0; i<n; i++)
     {
         for (int j=0; j<n; j++)
-            printf("%3d", *(a + i*n + j ));
+            printf("%5.1f", *(a + i*n + j ));
         printf("\n");
     }
     printf("\n");
@@ -13,28 +13,34 @@ void print_matrix(int *a, int n)
 
 int main()
 {
-    int a[3][3] =
+    double a[3][3] =
     {
+        /*
         {1,2,1},
         {2,1,-1},
         {2,-1,1}
+            */
+        {1,5,-2},
+        {2,3,1},
+        {2,4,-3}
     };
     int b[3] = {8,1,3};
 
     print_matrix(*a,3);
 
-    for (int i=1; i<3; i++)
+    int n=3;
+    for (int k=0; k<n-1; k++)
     {
-        int mult[2] = {a[0][0],a[i][0]};
-        for (int j=0; j<3; j++)
+        for (int i=k+1; i<n; i++)
         {
-            a[i][j] = a[i][j] * mult[0] - a[0][j] * mult[1];
+            double mult = a[i][k];
+            double lead = a[k][k];
+            for (int j=k; j<n; j++)
+                a[i][j] -= mult * a[k][j] / lead;
         }
     }
 
     print_matrix(*a,3);
-
-
 
     return 0;
 }

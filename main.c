@@ -36,7 +36,10 @@ int main()
             double mult = a[i][k];
             double lead = a[k][k];
             for (int j=k; j<n; j++)
-                a[i][j] -= mult * a[k][j] / lead;
+            {
+                a[i][j] *= lead;
+                a[i][j] -= mult * a[k][j];
+            }
         }
     }
 

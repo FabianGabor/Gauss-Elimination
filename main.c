@@ -65,7 +65,7 @@ int main()
 
     getmax(*a,b,1,n);
 
-    print_matrix(a, b, n);
+    print_matrix(*a, b, n);
 
     for (int k=0; k<n-1; k++)
     {
@@ -83,7 +83,7 @@ int main()
                 a[i][j] -= mult * a[k][j];
             }
         }
-        print_matrix(a, b, n);
+        print_matrix(*a, b, n);
     }
 
     print_matrix(*a, b, n);

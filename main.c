@@ -31,8 +31,8 @@ int getmax(int *a, int b[], int row, int n)
 {
     int max = b[row];
     for (int i=1; i<n; i++)
-        if ( *(a+i + row*n) > max )
-            max = *(a+i + row*n);
+        if ( *(a + i + row*n) > max )
+            max = *(a + i + row*n);
     return max;
 }
 

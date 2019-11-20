@@ -16,12 +16,15 @@ int *swap(int *a, int *b, int n)
 {
     for (int i=0; i<n; i++)
     {
-        int tmp_val = *(a + i);
+        int tmp = *(a + i);
         *(a + i) = *(a + n + i);
-        *(a + n + i) = tmp_val;
-
+        *(a + n + i) = tmp;
     }
-    return a;
+    int tmp = *b;
+    *b = *(b+1);
+    *(b+1) = tmp;
+
+    return NULL;
 }
 
 int main()
@@ -59,6 +62,7 @@ int main()
                 a[i][j] -= mult * a[k][j];
             }
         }
+        print_matrix(a, b, n);
     }
 
     print_matrix(*a, b, n);

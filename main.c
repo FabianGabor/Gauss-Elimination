@@ -27,6 +27,24 @@ int *swap(int *a, int *b, int n)
     return NULL;
 }
 
+int getmax(int *a, int b, int n)
+{
+    int max = b;
+    for (int i=1; i<n; i++)
+        if ( *(a+i) > max )
+            max = *(a+i);
+    return max;
+}
+
+int gcd (int *a, int *b, int n)
+{
+    int gcd = 1;
+
+    //for (int i=0; i<n; i++)
+
+    return gcd;
+}
+
 int main()
 {
     int a[4][4] =
@@ -42,6 +60,8 @@ int main()
     int n = sizeof(b)/sizeof(b[0]);
 
     if (a[0][0] == 0) swap(*a,b,n);
+
+    getmax(*a,*b,n);
 
     print_matrix(a, b, n);
 

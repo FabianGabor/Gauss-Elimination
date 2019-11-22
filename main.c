@@ -94,23 +94,20 @@ int *parseStr(char str[255])
     return data;
 }
 
-void buildArray (int *target_a, int *target_b, int *source, int n)
+void buildArray (int *target_a, int *target_b, int *source, int row, int n)
 {
-    int debug = *source;
-
-    *target_b = *source;
+    *(target_b + row) = *source;
 
     for (int i=0; i<n; i++)
     {
-        debug = *(source + i + 1);
-        *(target_a + i) = *(source + i +1);
+        *(target_a + i + row*n) = *(source + i +1);
     }
 }
 
 int main()
 {
     int *a_pointer;
-    int a[10][10] =
+    int a[4][4] =
     {
         {1,2,5,1},
         {3,-4,3,-2},
@@ -131,7 +128,7 @@ int main()
     double x[4] = {0};
 
     //int n = sizeof(b)/sizeof(b[0]);
-    int n;
+    int n = 4;
 
     typedef struct egyenletrendszer
     {
@@ -140,16 +137,19 @@ int main()
 
     egyenletrendszer er[10];
 
-    strncpy(er[0].egyenlet, "2*x1+3*x2+4*x3+5*x4=6", sizeof(er[0].egyenlet));
 
-    //char str[255] = "2*x1+3*x2+4*x3+5*x4=6";
-    a_pointer = parseStr(er[0].egyenlet);
-    int *b_pointer;
-    b_pointer = (a_pointer+1);
+    print_matrix(*a, b, n);
 
+    strncpy(er[0].egyenlet, "20*x1+30*x2+40*x3+50*x4=60", sizeof(er[0].egyenlet));
+    strncpy(er[1].egyenlet, "120*x1+130*x2+140*x3+150*x4=160", sizeof(er[0].egyenlet));
+    strncpy(er[2].egyenlet, "220*x1+230*x2+240*x3+250*x4=260", sizeof(er[0].egyenlet));
+    strncpy(er[3].egyenlet, "320*x1+330*x2+340*x3+350*x4=360", sizeof(er[0].egyenlet));
 
-    n = 4;
-    buildArray(*a, b, a_pointer, n);
+    for (int i=0; i<n; i++)
+    {
+        a_pointer = parseStr(er[i].egyenlet);
+        buildArray(*a, b, a_pointer, i, n);
+    }
 
 
 
@@ -157,7 +157,7 @@ int main()
     if (a[0][0] == 0) swap(*a,b,n);
 
     print_matrix(*a, b, n);
-
+/*
     // Gauss-elimináció egész együtthatókra
     for (int k=0; k<n-1; k++)
     {
@@ -250,6 +250,6 @@ int main()
 
     for (int i=0; i<n; i++)
         printf("x%d = %12f\n", i+1, x_double[i]);
-
+*/
     return 0;
 }

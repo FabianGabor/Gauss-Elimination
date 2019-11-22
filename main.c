@@ -60,34 +60,24 @@ int *parseStr(char str[255])
 {
     int i=0;
     static int data[10] = {0};
-    char plus[] = "+";
-    char equal[] = "=";
+    char plus[2] = "+";
+    char equal[2] = "=";
     char *ptr;
-
-    i=0;
 
     ptr = strtok(str, equal);
     ptr = strtok(NULL, equal);
     while (ptr != NULL)
     {
-        if (atoi(ptr) > 0)
-        {
-            data[i] = atoi(ptr);
-            i++;
-        }
-
+        data[i] = atoi(ptr);
+        i++;
         ptr = strtok(NULL, equal);
     }
 
     ptr = strtok(str, plus);
     while (ptr != NULL)
     {
-        if (atoi(ptr) > 0)
-        {
-            data[i] = atoi(ptr);
-            i++;
-        }
-
+        data[i] = atoi(ptr);
+        i++;
         ptr = strtok(NULL, plus);
     }
 
@@ -139,33 +129,35 @@ int main()
 
     egyenletrendszer er[10];
 
+    strncpy(er[0].egyenlet, "1 * x1 + 2 * x2 + 5 * x3 + 1 * x4 = 4", 255);
+    strncpy(er[1].egyenlet, "3 * x1 + 4 * x2 + 3 * x3 +-2 * x4 = 7", 255);
+    strncpy(er[2].egyenlet, "4 * x1 + 3 * x2 + 2 * x3 +-1 * x4 = 1", 255);
+    strncpy(er[3].egyenlet, "1 * x1 +-2 * x2 +-4 * x3 +-1 * x4 = 2", 255);
 
-    strncpy(er[0].egyenlet, "1*x1 + 2*x2 + 5*x3 + 1*x4 = 4", sizeof(er[0].egyenlet));
-    strncpy(er[1].egyenlet, "3*x1 + 4*x2 + 3*x3 +-2*x4 = 7", sizeof(er[0].egyenlet));
-    strncpy(er[2].egyenlet, "4*x1 + 3*x2 + 2*x3 +-1*x4 = 1", sizeof(er[0].egyenlet));
-    strncpy(er[3].egyenlet, "1*x1 +-2*x2 +-4*x3 +-1*x4 = 2", sizeof(er[0].egyenlet));
 
     printf("Elore definialt egyenletrendszer: \n");
     for (int i=0; i<n; i++)
         printf("%s \n", er[i].egyenlet);
+    printf("\n");
 
 
     printf("Szeretnel megadni mas egyenleteket? (i/n) : ");
     scanf("%c", &megad);
     getchar();
 
-    if (megad-'n')
+    if ( megad - 'n') // n = nem, bármi egyéb válasz = igen. // default = nem
     {
         printf("Egyenletek szama: ");
         scanf("%d", &n);
+        getchar();
 
         for (int i=0; i<n; i++)
         {
-            printf("%d. egyenlet: ", i);
-            scanf("%s", er[i].egyenlet);
-        }
+            printf("%d. egyenlet: ", i+1);
 
-        print_matrix(*a, b, n);
+            //scanf("%s", er[i].egyenlet);
+            fgets(er[i].egyenlet, 255, stdin);
+        }
     }
 
     for (int i=0; i<n; i++)
@@ -227,7 +219,7 @@ int main()
     for (int i=0; i<n; i++)
         printf("x%d = %7.3f\n", i+1, x[i]);
 
-/*
+
     ////////////////////////////////////////////////
     ///////////// Valós együtthatókkal /////////////
     ////////////////////////////////////////////////
@@ -273,6 +265,6 @@ int main()
 
     for (int i=0; i<n; i++)
         printf("x%d = %12f\n", i+1, x_double[i]);
-*/
+
     return 0;
 }

@@ -59,26 +59,25 @@ int findGCD(int *a, int *b, int row, int n)
 int parseStr(char str[255])
 {
     int i=0;
-    int data_tmp[10] = {0};
+    int data[10] = {0};
     char plus[] = "+";
     char *ptr;
 
     i=0;
-
 
     ptr = strtok(str, plus);
     while (ptr != NULL)
     {
         if (atoi(ptr) > 0)
         {
-            data_tmp[i] = atoi(ptr);
+            data[i] = atoi(ptr);
             i++;
         }
 
         ptr = strtok(NULL, plus);
     }
 
-    return i-1;
+    return i;
 }
 
 int main()

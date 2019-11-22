@@ -97,7 +97,7 @@ double *parseStrDouble(char str[255])
     ptr = strtok(str, plus);
     while (ptr != NULL)
     {
-        data[i] = atoi(ptr);    // data[1–x] az együtthatók
+        data[i] = atof(ptr);    // data[1–x] az együtthatók
         i++;
         ptr = strtok(NULL, plus);
     }
@@ -157,7 +157,7 @@ int main()
 
     egyenletrendszer er[10];
 
-    strncpy(er[0].egyenlet, "1 * x1  +  2 * x2  +  5 * x3 +  1 * x4 = 4", 255);
+    strncpy(er[0].egyenlet, "1.1 * x1  +  2 * x2  +  5 * x3 +  1 * x4 = 4", 255);
     strncpy(er[1].egyenlet, "3 * x1  + -4 * x2  +  3 * x3 + -2 * x4 = 6.8", 255);
     strncpy(er[2].egyenlet, "4 * x1  +  3 * x2  +  2 * x3 + -1 * x4 = 1.2", 255);
     strncpy(er[3].egyenlet, "1 * x1  + -2 * x2  + -4 * x3 + -1 * x4 = 2.09", 255);
@@ -168,7 +168,6 @@ int main()
     for (int i=0; i<n; i++)
         printf("\t%s \n", er[i].egyenlet);
     printf("\n");
-
 
     printf("Szeretnel megadni mas egyenleteket? (i/n) : ");
     scanf("%c", &megad);

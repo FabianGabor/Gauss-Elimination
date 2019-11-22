@@ -61,9 +61,23 @@ int parseStr(char str[255])
     int i=0;
     int data[10] = {0};
     char plus[] = "+";
+    char equal[] = "=";
     char *ptr;
 
     i=0;
+
+    ptr = strtok(str, equal);
+    ptr = strtok(NULL, equal);
+    while (ptr != NULL)
+    {
+        if (atoi(ptr) > 0)
+        {
+            data[i] = atoi(ptr);
+            i++;
+        }
+
+        ptr = strtok(NULL, equal);
+    }
 
     ptr = strtok(str, plus);
     while (ptr != NULL)

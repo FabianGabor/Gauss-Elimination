@@ -187,12 +187,12 @@ int main()
         }
     }
 
-    int a[n][n];
-    int b[n];
-    double x[n];
-    double a_double[n][n];
-    double b_double[n];
-    double x_double[n];
+    int a[n][n];            // C99 standard szerint lehetséges dinamikusan foglalni memóriát
+    int b[n];               // C99 standard szerint lehetséges dinamikusan foglalni memóriát
+    double x[n];            // C99 standard szerint lehetséges dinamikusan foglalni memóriát
+    double a_double[n][n];  // C99 standard szerint lehetséges dinamikusan foglalni memóriát
+    double b_double[n];     // C99 standard szerint lehetséges dinamikusan foglalni memóriát
+    double x_double[n];     // C99 standard szerint lehetséges dinamikusan foglalni memóriát
 
 
     for (int i=0; i<n; i++)

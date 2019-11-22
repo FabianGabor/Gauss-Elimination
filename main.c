@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 void print_matrix(int *a, int *b, int n)
 {
@@ -122,15 +123,19 @@ void buildArrayDouble (double *target_a, double *target_b, double *source, int r
 
 int main()
 {    
+    /*
     int a[4][4] =
     {
         {1,2,5,1},
         {3,-4,3,-2},
         {4,3,2,-1},
         {1,-2,-4,-1}
-    };
-    int b[4] = {4,7,1,2};
+    };*/
+    int a[4][4] = {0};
+    //int b[4] = {4,7,1,2};
+    int b[4] = {0};
 
+    /*
     double a_double[4][4] =
     {
         {1.41,      2.4,       5,     1.4},
@@ -138,9 +143,12 @@ int main()
         {4.99,   3.1415,    2.01,   -1.01},
         {1,          -2,  -4.891,      -1}
     };
-    double b_double[4] = {4.2,7.8,1.1,2.54};
+    */
+    double a_double[4][4] = {0};
+    //double b_double[4] = {4.2,7.8,1.1,2.54};
+    double b_double[4] = {0};
 
-    double x[4] = {0};
+    double x[5] = {0};
 
     char megad = 'n';
 

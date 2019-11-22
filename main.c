@@ -91,7 +91,7 @@ int parseStr(char str[255])
         ptr = strtok(NULL, plus);
     }
 
-    return i;
+    return i-i;
 }
 
 int main()
@@ -116,11 +116,12 @@ int main()
 
     double x[4] = {0};
 
-    int n = sizeof(b)/sizeof(b[0]);
+    //int n = sizeof(b)/sizeof(b[0]);
+    int n; // ismeretlenek számából számoljuk ki parseStr függvénnyel
 
 
     char str[255] = "2*x1+3*x2+4*x3+5*x4=6";
-    parseStr(str);
+    n = parseStr(str);
 
     // Ha az első sor első együtthatója 0, akkor felcserélem a következő sorral
     if (a[0][0] == 0) swap(*a,b,n);

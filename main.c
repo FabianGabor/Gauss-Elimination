@@ -94,6 +94,19 @@ int *parseStr(char str[255])
     return data;
 }
 
+void buildArray (int *target_a, int *target_b, int *source, int n)
+{
+    int debug = *source;
+
+    *target_b = *source;
+
+    for (int i=0; i<n; i++)
+    {
+        debug = *(source + i + 1);
+        *(target_a + i) = *(source + i +1);
+    }
+}
+
 int main()
 {
     int *a_pointer;
@@ -135,6 +148,8 @@ int main()
     b_pointer = (a_pointer+1);
 
 
+    n = 4;
+    buildArray(*a, b, a_pointer, n);
 
 
 

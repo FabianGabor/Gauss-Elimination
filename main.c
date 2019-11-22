@@ -302,5 +302,8 @@ int main()
     for (int i=0; i<n; i++)
         printf("x%d = %12f\n", i+1, x_double[i]);
 
+    printf("\n\nNyomj meg barmilyen billentyut a kilepeshez.\n");
+    getchar();
+
     return 0;
 }

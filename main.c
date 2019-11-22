@@ -12,6 +12,18 @@ void print_matrix(int *a, int *b, int n)
     printf("\n");
 }
 
+void print_matrix_double(double *a, double *b, int n)
+{
+    for (int i=0; i<n; i++)
+    {
+        for (int j=0; j<n; j++)
+            printf("%12.3f", *(a + i*n + j ));
+        printf("\t | %12.3f", *(b + i));
+        printf("\n");
+    }
+    printf("\n");
+}
+
 int *swap(int *a, int *b, int n)
 {
     for (int i=0; i<n; i++)
@@ -42,8 +54,6 @@ int findGCD(int *a, int *b, int row, int n)
     return gcd(result, *(b+row));
 }
 
-
-
 int main()
 {
     int a[4][4] =
@@ -54,6 +64,16 @@ int main()
         {1,-2,-4,-1}
     };
     int b[4] = {4,7,1,2};
+
+    double a_double[4][4] =
+    {
+        {1.41,      2.4,       5,     1.4},
+        {3.1415,   -4.2,     3.7,      -2},
+        {4.99,   3.1415,    2.01,   -1.01},
+        {1,          -2,  -4.891,      -1}
+    };
+    double b_double[4] = {4.2,7.8,1.1,2.54};
+
     double x[4] = {0};
 
     int n = sizeof(b)/sizeof(b[0]);
@@ -63,6 +83,7 @@ int main()
 
     print_matrix(*a, b, n);
 
+    // Gauss-elimináció egész együtthatókra
     for (int k=0; k<n-1; k++)
     {
         for (int i=k+1; i<n; i++)
@@ -107,6 +128,53 @@ int main()
 
     for (int i=0; i<n; i++)
         printf("x%d = %7.3f\n", i+1, x[i]);
+
+
+    ////////////////////////////////////////////////
+    ///////////// Valós együtthatókkal /////////////
+    ////////////////////////////////////////////////
+
+    printf("\n\n ### Valos egyutthatokkal ###\n\n");
+
+    print_matrix_double(*a_double, b_double, n);
+
+    // Gauss-elimináció valós együtthatókra
+    for (int k=0; k<n-1; k++)
+    {
+        for (int i=k+1; i<n; i++)
+        {
+            double mult = a_double[i][k];
+            double lead = a_double[k][k];
+
+            b_double[i] *= lead;
+            b_double[i] -= mult * b_double[k];
+
+            for (int j=k; j<n; j++)
+            {
+                a_double[i][j] *= lead;
+                a_double[i][j] -= mult * a_double[k][j];
+            }
+        }
+        print_matrix_double(*a_double, b_double, n);
+    }
+
+    // Ismeretlenek kiszámítása
+    // Első egyenlet összege: 4.19999967‬ ~ 4.2
+    double x_double[4] = {0};
+
+    for (int i=n-1; i>=0; i--)
+    {
+        int j;
+        double sum = b_double[i];
+        for (j=0; j<n; j++)
+        {
+            sum -= a_double[i][j] * x_double[j];
+        }
+        x_double[i] = sum / a_double[i][i];
+    }
+
+    for (int i=0; i<n; i++)
+        printf("x%d = %12f\n", i+1, x_double[i]);
 
     return 0;
 }

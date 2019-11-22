@@ -80,14 +80,44 @@ int *parseStr(char str[255])
     return data;
 }
 
+double *parseStrDouble(char str[255])
+{
+    int i=0;
+    static double data[10] = {0};
+    char plus[2] = "+";
+    char equal[2] = "=";
+    char *ptr;
+
+    ptr = strtok(str, equal);   // kezdjük az egyenlőségjel két oldalával
+    ptr = strtok(NULL, equal);  // ugorjunk át az elválasztó karakter (equal) másik oldalára
+    data[i] = atof(ptr);        // data[0] az egyenlőség jobb oldala
+    i++;
+
+    ptr = strtok(str, plus);
+    while (ptr != NULL)
+    {
+        data[i] = atoi(ptr);    // data[1–x] az együtthatók
+        i++;
+        ptr = strtok(NULL, plus);
+    }
+
+    return data;
+}
+
 void buildArray (int *target_a, int *target_b, int *source, int row, int n)
 {
     *(target_b + row) = *source; // b matrix row sora = parseStr(er[i].egyenlet) első eleme
 
     for (int i=0; i<n; i++)
-    {
         *(target_a + i + row*n) = *(source + i +1);
-    }
+}
+
+void buildArrayDouble (double *target_a, double *target_b, double *source, int row, int n)
+{
+    *(target_b + row) = *source; // b matrix row sora = parseStr(er[i].egyenlet) első eleme
+
+    for (int i=0; i<n; i++)
+        *(target_a + i + row*n) = *(source + i +1);
 }
 
 int main()
@@ -125,7 +155,7 @@ int main()
 
     egyenletrendszer er[10];
 
-    strncpy(er[0].egyenlet, "1 * x1  +  2 * x2  +  5 * x3 +  1 * x4 = 4", 255);
+    strncpy(er[0].egyenlet, "1 * x1  +  2 * x2  +  5 * x3 +  1 * x4 = 4.2", 255);
     strncpy(er[1].egyenlet, "3 * x1  + -4 * x2  +  3 * x3 + -2 * x4 = 7", 255);
     strncpy(er[2].egyenlet, "4 * x1  +  3 * x2  +  2 * x3 + -1 * x4 = 1", 255);
     strncpy(er[3].egyenlet, "1 * x1  + -2 * x2  + -4 * x3 + -1 * x4 = 2", 255);
@@ -150,8 +180,6 @@ int main()
         for (int i=0; i<n; i++)
         {
             printf("%d. egyenlet: ", i+1);
-
-            //scanf("%s", er[i].egyenlet);
             fgets(er[i].egyenlet, 255, stdin);
         }
     }
@@ -160,7 +188,8 @@ int main()
     {
         //a_pointer = parseStr(er[i].egyenlet);
         //buildArray(*a, b, a_pointer, i, n);
-        buildArray(*a, b, parseStr(er[i].egyenlet), i, n);  // parseStr visszatéríti a szöveges egyenletből kinyert együtthatókat // első eleme az egyenlőség jobb oldala
+        //buildArray(*a, b, parseStr(er[i].egyenlet), i, n);  // parseStr visszatéríti a szöveges egyenletből kinyert együtthatókat // első eleme az egyenlőség jobb oldala
+        buildArrayDouble(*a_double, b_double, parseStrDouble(er[i].egyenlet), i, n);
     }
 
 

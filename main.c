@@ -127,6 +127,8 @@ int main()
 
     double x[4] = {0};
 
+    char megad = 'n';
+
     //int n = sizeof(b)/sizeof(b[0]);
     int n = 4;
 
@@ -138,12 +140,33 @@ int main()
     egyenletrendszer er[10];
 
 
-    print_matrix(*a, b, n);
+    strncpy(er[0].egyenlet, "1*x1 + 2*x2 + 5*x3 + 1*x4 = 4", sizeof(er[0].egyenlet));
+    strncpy(er[1].egyenlet, "3*x1 + 4*x2 + 3*x3 +-2*x4 = 7", sizeof(er[0].egyenlet));
+    strncpy(er[2].egyenlet, "4*x1 + 3*x2 + 2*x3 +-1*x4 = 1", sizeof(er[0].egyenlet));
+    strncpy(er[3].egyenlet, "1*x1 +-2*x2 +-4*x3 +-1*x4 = 2", sizeof(er[0].egyenlet));
 
-    strncpy(er[0].egyenlet, "20*x1+30*x2+40*x3+50*x4=60", sizeof(er[0].egyenlet));
-    strncpy(er[1].egyenlet, "120*x1+130*x2+140*x3+150*x4=160", sizeof(er[0].egyenlet));
-    strncpy(er[2].egyenlet, "220*x1+230*x2+240*x3+250*x4=260", sizeof(er[0].egyenlet));
-    strncpy(er[3].egyenlet, "320*x1+330*x2+340*x3+350*x4=360", sizeof(er[0].egyenlet));
+    printf("Elore definialt egyenletrendszer: \n");
+    for (int i=0; i<n; i++)
+        printf("%s \n", er[i].egyenlet);
+
+
+    printf("Szeretnel megadni mas egyenleteket? (i/n) : ");
+    scanf("%c", &megad);
+    getchar();
+
+    if (megad-'n')
+    {
+        printf("Egyenletek szama: ");
+        scanf("%d", &n);
+
+        for (int i=0; i<n; i++)
+        {
+            printf("%d. egyenlet: ", i);
+            scanf("%s", er[i].egyenlet);
+        }
+
+        print_matrix(*a, b, n);
+    }
 
     for (int i=0; i<n; i++)
     {
@@ -157,7 +180,7 @@ int main()
     if (a[0][0] == 0) swap(*a,b,n);
 
     print_matrix(*a, b, n);
-/*
+
     // Gauss-elimináció egész együtthatókra
     for (int k=0; k<n-1; k++)
     {
@@ -204,7 +227,7 @@ int main()
     for (int i=0; i<n; i++)
         printf("x%d = %7.3f\n", i+1, x[i]);
 
-
+/*
     ////////////////////////////////////////////////
     ///////////// Valós együtthatókkal /////////////
     ////////////////////////////////////////////////

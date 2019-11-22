@@ -123,6 +123,8 @@ void buildArrayDouble (double *target_a, double *target_b, double *source, int r
 
 int main()
 {    
+
+    int n = 4;
     /*
     int a[4][4] =
     {
@@ -130,10 +132,9 @@ int main()
         {3,-4,3,-2},
         {4,3,2,-1},
         {1,-2,-4,-1}
-    };*/
-    int a[4][4] = {0};
-    //int b[4] = {4,7,1,2};
-    int b[4] = {0};
+    };
+    int b[4] = {4,7,1,2};
+    */
 
     /*
     double a_double[4][4] =
@@ -143,17 +144,11 @@ int main()
         {4.99,   3.1415,    2.01,   -1.01},
         {1,          -2,  -4.891,      -1}
     };
-    */
-    double a_double[4][4] = {0};
-    //double b_double[4] = {4.2,7.8,1.1,2.54};
-    double b_double[4] = {0};
-
+    double b_double[4] = {4.2,7.8,1.1,2.54};
     double x[5] = {0};
+    */
 
     char megad = 'n';
-
-    //int n = sizeof(b)/sizeof(b[0]);
-    int n = 4;
 
     typedef struct egyenletrendszer
     {
@@ -191,6 +186,14 @@ int main()
             fgets(er[i].egyenlet, 255, stdin);
         }
     }
+
+    int a[n][n];
+    int b[n];
+    double x[n];
+    double a_double[n][n];
+    double b_double[n];
+    double x_double[n];
+
 
     for (int i=0; i<n; i++)
     {
@@ -284,7 +287,6 @@ int main()
 
     // Ismeretlenek kiszámítása
     // Első egyenlet összege: 4.19999967‬ ~ 4.2
-    double x_double[4] = {0};
 
     for (int i=n-1; i>=0; i--)
     {

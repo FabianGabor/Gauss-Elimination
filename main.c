@@ -56,10 +56,10 @@ int findGCD(int *a, int *b, int row, int n)
     return gcd(result, *(b+row));
 }
 
-int parseStr(char str[255])
+int *parseStr(char str[255])
 {
     int i=0;
-    int data[10] = {0};
+    static int data[10] = {0};
     char plus[] = "+";
     char equal[] = "=";
     char *ptr;
@@ -91,12 +91,13 @@ int parseStr(char str[255])
         ptr = strtok(NULL, plus);
     }
 
-    return i-i;
+    return data;
 }
 
 int main()
 {
-    int a[4][4] =
+    int *a_pointer;
+    int a[10][10] =
     {
         {1,2,5,1},
         {3,-4,3,-2},
@@ -117,11 +118,25 @@ int main()
     double x[4] = {0};
 
     //int n = sizeof(b)/sizeof(b[0]);
-    int n; // ismeretlenek számából számoljuk ki parseStr függvénnyel
+    int n;
+
+    typedef struct egyenletrendszer
+    {
+        char egyenlet[255];
+    } egyenletrendszer;
+
+    egyenletrendszer er[10];
+
+    strncpy(er[0].egyenlet, "2*x1+3*x2+4*x3+5*x4=6", sizeof(er[0].egyenlet));
+
+    //char str[255] = "2*x1+3*x2+4*x3+5*x4=6";
+    a_pointer = parseStr(er[0].egyenlet);
+    int *b_pointer;
+    b_pointer = (a_pointer+1);
 
 
-    char str[255] = "2*x1+3*x2+4*x3+5*x4=6";
-    n = parseStr(str);
+
+
 
     // Ha az első sor első együtthatója 0, akkor felcserélem a következő sorral
     if (a[0][0] == 0) swap(*a,b,n);

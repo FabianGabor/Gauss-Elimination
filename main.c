@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 void print_matrix(int *a, int *b, int n)
 {
@@ -54,6 +56,31 @@ int findGCD(int *a, int *b, int row, int n)
     return gcd(result, *(b+row));
 }
 
+int parseStr(char str[255])
+{
+    int i=0;
+    int data_tmp[10] = {0};
+    char plus[] = "+";
+    char *ptr;
+
+    i=0;
+
+
+    ptr = strtok(str, plus);
+    while (ptr != NULL)
+    {
+        if (atoi(ptr) > 0)
+        {
+            data_tmp[i] = atoi(ptr);
+            i++;
+        }
+
+        ptr = strtok(NULL, plus);
+    }
+
+    return i-1;
+}
+
 int main()
 {
     int a[4][4] =
@@ -77,6 +104,10 @@ int main()
     double x[4] = {0};
 
     int n = sizeof(b)/sizeof(b[0]);
+
+
+    char str[255] = "2*x1+3*x2+4*x3+5*x4=6";
+    parseStr(str);
 
     // Ha az első sor első együtthatója 0, akkor felcserélem a következő sorral
     if (a[0][0] == 0) swap(*a,b,n);

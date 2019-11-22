@@ -58,9 +58,8 @@ int main()
 
     int n = sizeof(b)/sizeof(b[0]);
 
+    // Ha az első sor első együtthatója 0, akkor felcserélem a következő sorral
     if (a[0][0] == 0) swap(*a,b,n);
-
-
 
     print_matrix(*a, b, n);
 
@@ -83,6 +82,7 @@ int main()
         print_matrix(*a, b, n);
     }
 
+    // Soronként a legnagyobb közös osztóval végigosztani
     for (int i=0; i<n; i++)
     {
         int gcd = findGCD(*a,b,i,n);
@@ -93,6 +93,7 @@ int main()
 
     print_matrix(*a, b, n);
 
+    // Ismeretlenek kiszámítása
     for (int i=n-1; i>=0; i--)
     {
         int j;

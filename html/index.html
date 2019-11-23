@@ -117,37 +117,7 @@
 		<div class="button" onClick="Gauss()">Submit</div>
 	</div>
 </form>
-<script>
-
-
-
-function Gauss() {
-	var map = [];
-	var numItems = $('.input-group-field').length;	
-	var a = [[]];
-	var i = j =0;
-
-	$(".input-group-field").each(function() {		
-		map.push($(this).val());		
-	});
-
-	var n = Math.sqrt(map.length);
-	
-	for (i=0; i<n; i++)
-	{
-		for (j=0; j<n; j++)
-		{
-			a[i][j] = map[i*n + j];
-		}
-		if (i<n-1) a.push(new Array());
-	}
-	
-	console.log(map);
-	console.log(a);
-	
-}
-
-</script>
+<script src="js/gauss-elimination.js"></script>
 
 </body>
 </html>

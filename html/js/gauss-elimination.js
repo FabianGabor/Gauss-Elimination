@@ -1,3 +1,13 @@
+function appendText(x) {
+    var i = 0;
+    $("#solution").empty();
+    $(x).each(function() {
+        $("#solution").append('<li class="stat">x<span class="h6">' + i + "</span> = " + '<span class="stat">' + x[i] + '</span>' + '</li>');
+        i++;
+    })
+} 
+
+
 function Gauss() {
 	var map = [];
 	var numItems = $('.input-group-field').length;	
@@ -59,5 +69,10 @@ function Gauss() {
     
     console.log("Megoldás: ");
     for (i=0; i<n; i++)
+    {
         console.log("x",i,"=",x[i]);
+    }
+    appendText(x);
+
+
 }

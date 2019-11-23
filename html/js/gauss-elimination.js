@@ -1,8 +1,10 @@
 function appendText(x) {
     var i = 0;
-    $("#solution").empty();
+    $("#unknowns").empty();
+    $("#solutions").empty();
     $(x).each(function() {
-        $("#solution").append('<li class="stat">x<span class="h6">' + i + "</span> = " + '<span class="stat">' + x[i] + '</span>' + '</li>');
+        $("#unknowns").append('<li class="stat">x<span class="h6">' + i + '</span> = &nbsp;</li>');
+        $("#solutions").append('<li class="stat">' + x[i] + '</li>');
         i++;
     })
 } 

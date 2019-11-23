@@ -10,15 +10,19 @@ function appendText(x) {
 
 function Gauss() {
 	var map = [];
-	var numItems = $('.input-group-field').length;	
+	var numItems = $('.equals').length;	
 	var a = [[]];
-	var b = [8,-11,-3];
+	var b = [];
     var i = j =0;
     var x = [0,0,0];
     var sum = 0;
 
-	$(".input-group-field").each(function() {		
+	$(".unknown").each(function() {		
 		map.push($(this).val());		
+    });
+    
+    $(".equals").each(function() {		
+		b.push($(this).val());		
 	});
 
 	var n = Math.sqrt(map.length);
@@ -32,8 +36,8 @@ function Gauss() {
 		if (i<n-1) a.push(new Array());
 	}
 
-	const a_original = a;
-	console.log(a_original);
+    console.log(a);
+    console.log(b);
 
 	
 	for (k=0; k<n-1; k++)
@@ -64,8 +68,8 @@ function Gauss() {
         x[i] = sum / a[i][i];
     }
 
-	console.log(a);
-    console.log(b);
+	//console.log(a);
+    //console.log(b);
     
     console.log("Megoldás: ");
     for (i=0; i<n; i++)
@@ -73,6 +77,6 @@ function Gauss() {
         console.log("x",i,"=",x[i]);
     }
     appendText(x);
-
+    
 
 }

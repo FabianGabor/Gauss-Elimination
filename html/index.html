@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Gauss Elimination</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">		
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/css/foundation.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<!---
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/js/plugins/foundation.core.min.js"></script>	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/js/plugins/foundation.abide.min.js"></script>
+	-->
+</head>
+
+<body>
+<div class="grid-container">
+	<div class="grid-x">
+		<div class="cell">
+			<h1>Gauss Elimination</h1>
+		</div>
+	</div>
+</div>
+<form data-abide class="grid-container" id="Gauss" >	
+	<div class="grid-x">
+		<div data-abide-error class="alert callout" aria-live="assertive" style="display: none;">
+			<p><i class="fi-alert"></i> There are some errors in your form.</p>
+		</div>
+		<div class="small-3 cell">
+			<div class="input-group">
+				<input class="input-group-field" id="x1" aria-describedby="x1" type="number" required pattern="number" name="1"/>
+				<span class="input-group-label">* x1</span>				
+			</div>
+			<label class="form-error" data-form-error-for="x1">Amount is required.</label>
+		</div>
+		<label for="x2" class="middle">+</label>
+		<div class="small-3 cell">				
+			<div class="input-group">
+				<input class="input-group-field" id="x2" aria-describedby="x2" type="number" required pattern="number" name="2"/>
+				<span class="input-group-label"> * x2</span>
+			</div>				
+			<label class="form-error" data-form-error-for="x2">Amount is required.</label>
+		</div>
+		<label for="x3" class="middle">+</label>
+		<div class="small-3 cell">				
+			<div class="input-group">
+				<input class="input-group-field" id="x2" aria-describedby="x2" type="number" required pattern="number" name="3"/>
+				<span class="input-group-label"> * x2</span>
+			</div>				
+			<label class="form-error" data-form-error-for="x2">Amount is required.</label>
+		</div>
+		<label for="x1" class="middle">= 0</label>
+	</div>
+
+	<div class="grid-x">
+		<div data-abide-error class="alert callout" aria-live="assertive" style="display: none;">
+			<p><i class="fi-alert"></i> There are some errors in your form.</p>
+		</div>
+		<div class="small-3 cell">
+			<div class="input-group">
+				<input class="input-group-field" id="x1" aria-describedby="x1" type="number" required pattern="number" name="4"/>
+				<span class="input-group-label">* x1</span>				
+			</div>
+			<label class="form-error" data-form-error-for="x1">Amount is required.</label>
+		</div>
+		<label for="x2" class="middle">+</label>
+		<div class="small-3 cell">				
+			<div class="input-group">
+				<input class="input-group-field" id="x2" aria-describedby="x2" type="number" required pattern="number" name="5"/>
+				<span class="input-group-label"> * x2</span>
+			</div>				
+			<label class="form-error" data-form-error-for="x2">Amount is required.</label>
+		</div>
+		<label for="x3" class="middle">+</label>
+		<div class="small-3 cell">				
+			<div class="input-group">
+				<input class="input-group-field" id="x2" aria-describedby="x2" type="number" required pattern="number" name="6"/>
+				<span class="input-group-label"> * x2</span>
+			</div>				
+			<label class="form-error" data-form-error-for="x2">Amount is required.</label>
+		</div>
+		<label for="x1" class="middle">= 0</label>
+	</div>
+
+	<div class="grid-x">
+			<div data-abide-error class="alert callout" aria-live="assertive" style="display: none;">
+				<p><i class="fi-alert"></i> There are some errors in your form.</p>
+			</div>
+			<div class="small-3 cell">
+				<div class="input-group">
+					<input class="input-group-field" id="x1" aria-describedby="x1" type="number" required pattern="number" name="7"/>
+					<span class="input-group-label">* x1</span>				
+				</div>
+				<label class="form-error" data-form-error-for="x1">Amount is required.</label>
+			</div>
+			<label for="x2" class="middle">+</label>
+			<div class="small-3 cell">				
+				<div class="input-group">
+					<input class="input-group-field" id="x2" aria-describedby="x2" type="number" required pattern="number" name="8"/>
+					<span class="input-group-label"> * x2</span>
+				</div>				
+				<label class="form-error" data-form-error-for="x2">Amount is required.</label>
+			</div>
+			<label for="x3" class="middle">+</label>
+			<div class="small-3 cell">				
+				<div class="input-group">
+					<input class="input-group-field" id="x2" aria-describedby="x2" type="number" required pattern="number" name="9"/>
+					<span class="input-group-label"> * x2</span>
+				</div>				
+				<label class="form-error" data-form-error-for="x2">Amount is required.</label>
+			</div>
+			<label for="x1" class="middle">= 0</label>
+		</div>
+	
+
+	<div class="grid-x">
+		<div class="button" onClick="Gauss()">Submit</div>
+	</div>
+</form>
+<script>
+
+
+
+function Gauss() {
+	var map = [];
+	var numItems = $('.input-group-field').length;	
+	var tdarray = [[],[],[]];
+	var i = j =0;
+
+	$(".input-group-field").each(function() {		
+		map.push($(this).val());		
+	});
+
+	var n = Math.sqrt(map.length);
+	
+	for (i=0; i<n; i++)
+	{
+		for (j=0; j<n; j++)
+		{
+			tdarray[i][j] = map[i*n + j];
+		}
+	}
+	
+	console.log(map);
+	console.log(tdarray);
+	
+}
+
+</script>
+
+</body>
+</html>

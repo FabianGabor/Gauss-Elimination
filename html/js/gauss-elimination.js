@@ -2,8 +2,10 @@ function Gauss() {
 	var map = [];
 	var numItems = $('.input-group-field').length;	
 	var a = [[]];
-	var b = [8,1,3];
-	var i = j =0;
+	var b = [8,-11,-3];
+    var i = j =0;
+    var x = [0,0,0];
+    var sum = 0;
 
 	$(".input-group-field").each(function() {		
 		map.push($(this).val());		
@@ -23,7 +25,7 @@ function Gauss() {
 	const a_original = a;
 	console.log(a_original);
 
-	/*
+	
 	for (k=0; k<n-1; k++)
     {
         for (i=k+1; i<n; i++)
@@ -41,9 +43,21 @@ function Gauss() {
             }
         }        
     }
-	*/
 
-	//console.log(map);
+    for (i=n-1; i>=0; i--)
+    {        
+        sum = b[i];
+        for (j=0; j<n; j++)
+        {
+            sum -= a[i][j] * x[j];
+        }
+        x[i] = sum / a[i][i];
+    }
+
 	console.log(a);
-	console.log(b);
+    console.log(b);
+    
+    console.log("Megoldás: ");
+    for (i=0; i<n; i++)
+        console.log("x",i,"=",x[i]);
 }

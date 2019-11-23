@@ -17,21 +17,22 @@
 		</div>
 	</div>
 </div>
-<form data-abide class="grid-container" id="Gauss" >	
+<form data-abide class="grid-container" id="Gauss" novalidate>	
 	<div class="grid-x">
 		<div data-abide-error class="alert callout" aria-live="assertive" style="display: none;">
 			<p><i class="fi-alert"></i> There are some errors in your form.</p>
 		</div>
 		<div class="small-3 cell">
 			<div class="input-group">
-				<input class="input-group-field text-center unknown" id="x1" aria-describedby="x1" type="number" required pattern="number" name="1" value="2"/>
-				<span class="input-group-label">* x1 +</span>				
+				<input class="input-group-field text-center unknown" id="x1" aria-describedby="x1" type="number" required pattern="number" name="x1" value="2"/>
+				<span class="input-group-label">* x1 +</span>
+				<label class="form-error" data-form-error-for="x1">Amount is required.</label>			
 			</div>
 			<label class="form-error" data-form-error-for="x1">Amount is required.</label>			
 		</div>		
 		<div class="small-3 cell">				
 			<div class="input-group">
-				<input class="input-group-field text-center unknown" id="x2" aria-describedby="x2" type="number" required pattern="number" name="2" value="3"/>
+				<input class="input-group-field text-center unknown" id="x2" aria-describedby="x2" type="number" required pattern="number" name="x2" value="3"/>
 				<span class="input-group-label"> * x2 +</span>				
 			</div>				
 			<label class="form-error" data-form-error-for="x2">Amount is required.</label>
@@ -134,7 +135,6 @@
 	</div>
 </div>
 
-
 <div class="position-fixed-bottom">	
 	<p class="text-center" ><a href="https://github.com/FabianGabor/Gauss-Elimination" data-tooltip title="Source code @ Fábián Gábor's GitHub" target="_blank">
 		<svg class="octicon octicon-mark-github v-align-middle" height="64" viewBox="0 0 16 16" version="1.1" width="64" aria-hidden="true"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
@@ -142,6 +142,10 @@
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/js/foundation.min.js"></script>	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.5.3/js/plugins/foundation.abide.min.js"></script>
+-->
 <script src="js/gauss-elimination.js"></script>
 
 </body>

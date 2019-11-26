@@ -57,6 +57,9 @@ function Gauss() {
                 a[i][j] *= lead;
                 a[i][j] -= mult * a[k][j];
             }
+			
+			a_temp = a;
+			console.log(a_temp);
         }        
     }
 

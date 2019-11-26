@@ -59,7 +59,7 @@ function Gauss() {
             }
 			
 			a_temp = a;
-			console.log(a_temp);
+			console.log('a_temp' + a_temp);
         }        
     }
 
